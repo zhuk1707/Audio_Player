@@ -1,6 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;400;700&display=swap");
 * {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
   font-family: "Sora", sans-serif;
+}
+
+body {
+  background-color: lightgrey;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 30px;
+  max-width: 380px;
+}
+.player__title {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  color: #777777;
+  margin: 10px 0 10px;
+}
+.player__cover {
+  margin: 20px 0;
+}
+.player__song {
+  font-size: 14px;
+}
+.player__author {
+  font-size: 10px;
+  color: #777777;
+}
+.player__progress {
+  margin: 20px 0;
+}
+.player__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.player__btn {
+  padding: 5px;
+  font-size: 22px;
+}
+.player__btn:hover {
+  color: purple;
+  transition: color 0.15s ease-in;
+}
+.player__btn_play {
+  font-size: 30px;
+}
+.cover {
+  display: flex;
+  justify-content: center;
+}
+.progress {
+  margin: 20px 0 10px;
+}
+.progress__container {
+  background-color: #d7d7d7;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.progress__bar {
+  background-color: purple;
+  border-radius: 5px;
+  height: 4px;
+  width: 20px;
+  margin: 3px;
 }
 
 /*# sourceMappingURL=style.css.map */
