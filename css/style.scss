@@ -23,6 +23,7 @@ body {
   background-color: white;
   padding: 20px 30px;
   border-radius: 30px;
+  min-width: 200px;
   max-width: 380px;
   box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(254, 246, 255, 0.38), -8px 0px 8px rgba(249, 244, 251, 0.5), 19px 21px 50px rgba(199, 176, 210, 0.73);
 
@@ -86,6 +87,9 @@ body {
   justify-content: center;
 
   &__img {
+    &.active {
+      animation: coverAnimation 5s linear infinite;
+    }
   }
 }
 
@@ -108,5 +112,14 @@ body {
     height: 4px;
     width: 20px;
     margin: 3px;
+  }
+}
+
+@keyframes coverAnimation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,7 +1,9 @@
 const player = document.querySelector('.player')
+const cover = document.querySelector('.cover__img')
 const songName = document.querySelector('.player__song')
 const songAuthor = document.querySelector('.player__author')
 const buttons = document.querySelector('.player__buttons')
+const playBtn = document.querySelector('.player__btn_play i')
 const audio = document.querySelector('.player__audio')
 const progressContainer = document.querySelector('.progress__container')
 const progressBar = document.querySelector('.progress__bar')
@@ -53,13 +55,56 @@ function loadSong(song) {
 }
 
 function playSong() {
+  player.classList.add('play')
+  cover.classList.add('active')
+
+  playBtn.classList.remove('fa-play')
+  playBtn.classList.add('fa-pause')
+  
   audio.play()
 }
 
 function pauseSong() {
+  player.classList.remove('play')
+  cover.classList.remove('active')
+
+  playBtn.classList.remove('fa-pause')
+  playBtn.classList.add('fa-play')
+  
   audio.pause()
 }
 
+buttons.addEventListener('click', function (event) {
+  if (event.target.closest('.player__btn_prev')) {
+    songIndex--
+    
+    if (songIndex < 0) {
+      songIndex = songs.length - 1
+    }
+    
+    loadSong(songs[songIndex])
+    playSong()
+  }
+
+  if (event.target.closest('.player__btn_play')) {
+    if (player.classList.contains('play')) {
+      pauseSong()
+    } else {
+      playSong()
+    }
+  }
+
+  if (event.target.closest('.player__btn_next')) {
+    songIndex++
+    
+    if (songIndex > songs.length - 1) {
+      songIndex = 0
+    }
+
+    loadSong(songs[songIndex])
+    playSong()
+  }
+})
+
+//Songs loading
 loadSong(songs[songIndex])
-playSong()
-pauseSong()
