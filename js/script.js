@@ -74,6 +74,35 @@ function pauseSong() {
   audio.pause()
 }
 
+function nextSong() {
+  songIndex++
+
+  if (songIndex > songs.length - 1) {
+    songIndex = 0
+  }
+
+  loadSong(songs[songIndex])
+  playSong()
+}
+
+function updateProgress(e) {
+  const {duration, currentTime} = e.srcElement
+  const progressPercents = (currentTime / duration) * 100
+  progressBar.style.width = `${progressPercents}%`
+}
+
+function setProgress(e) {
+  const containerWidth = this.clientWidth
+  const clickPositionX = e.offsetX
+  const duration = audio.duration 
+  
+  audio.currentTime = (clickPositionX / containerWidth) * duration
+}
+
+progressContainer.addEventListener('click', setProgress)
+
+audio.addEventListener('timeupdate', updateProgress)
+
 buttons.addEventListener('click', function (event) {
   if (event.target.closest('.player__btn_prev')) {
     songIndex--
@@ -95,16 +124,10 @@ buttons.addEventListener('click', function (event) {
   }
 
   if (event.target.closest('.player__btn_next')) {
-    songIndex++
-    
-    if (songIndex > songs.length - 1) {
-      songIndex = 0
-    }
-
-    loadSong(songs[songIndex])
-    playSong()
+    nextSong()
   }
 })
 
-//Songs loading
+audio.addEventListener('ended', nextSong)
+
 loadSong(songs[songIndex])
